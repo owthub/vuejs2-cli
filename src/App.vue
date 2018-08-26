@@ -1,30 +1,33 @@
 <template>
   <div>
-  <h3>This is App vue page</h3>
-    <student></student>
-    <employee></employee>
+      <owt-header></owt-header>
+
+      <owt-content></owt-content>
+
+      <owt-footer></owt-footer>
   </div>
 </template>
 
 <script>
 
-import Employee from './Employee.vue'
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
+import Content from './components/Content.vue'
 
 export default {
-components:{
-  employee: Employee
-},
+  components:{
+    "owt-header": Header,
+    "owt-footer": Footer,
+    "owt-content": Content
+  },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+
     }
   }
 }
 </script>
 
 <style scoped>
-  h3{
-    color:yellow;
-    font-size:45px
-  }
+
 </style>
