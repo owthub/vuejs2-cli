@@ -2,49 +2,66 @@
   <div>
   <div id="content">
       <h3>Playlists</h3>
+{{ channelName }}  AND {{ name }}
        <ul>
-          <li v-for="playlist in playlists">
+          <li v-for="playlist in myplaylist">
             <a v-bind:href="playlist.githublink" v-bind:title="playlist.title" target="_blank">
                  {{ playlist.name }}
             </a>
           </li>
        </ul>
+
+        <h2>Student List</h2>
+        <ul>
+            <li v-for="student in students">{{ student }}</li>
+        </ul>
+        <button v-on:click="deleteStudent">Delete Student</button>
+
+       <h3>Simple message: {{ simpleMessage }}</h3>
+
+       {{ call1() }}
   </div>
   </div>
 </template>
 
 <script>
 export default {
-
+  /*props:["name","myplaylist","channelName"],*/
+  props:{
+    simpleMessage:{
+      type: String
+    },
+    students:{
+      type: Array
+    },
+    name:{
+       type: String,
+       default: "Default name"
+    },
+    myplaylist:{
+      type: Array
+    },
+    channelName:{
+       type: String
+    },
+    author:{
+      type:Object
+    },
+    isLearning:{
+       type: Boolean
+    }
+  },
   data () {
     return {
-       playlists:[
-         {
-             name:"Wordpress Plugin Development",
-             githublink:"https://github.com/owthub/wordpress-plugin",
-             title:"Wordpress Plugin Development"
-         },
-         {
-            name:"Wordpress Theme Development",
-            githublink:"https://github.com/owthub/wordpress-theme",
-            title:"Wordpress Theme Development"
-          },
-          {
-             name:"Vue Js2 Development",
-             githublink:"https://github.com/owthub/vuejs2",
-             title:"Vue Js2 Development"
-           },
-           {
-              name:"WP JSON Rest API Development",
-              githublink:"https://github.com/owthub/wordpress-json-rest-api",
-              title:"WP JSON Rest API Development"
-            },
-            {
-               name:"WP JSON Rest API Development",
-               githublink:"https://github.com/owthub/wordpress-json-rest-api",
-               title:"WP JSON Rest API Development"
-             }
-       ]
+      message:"This is simple message"
+    }
+  },
+  methods:{
+    call1: function(){
+        console.log(this.channelName);
+    },
+    deleteStudent:function(){
+         this.students.pop();
     }
   }
 }
