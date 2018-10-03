@@ -1,26 +1,17 @@
 <template>
   <div>
-    <button v-on:click="passData()">Click here to send data</button>
+     <h3>Student: {{ message }}</h3>
   </div>
 </template>
 
 <script>
 
-import {EventBus} from '../main'
-
 export default {
 
   data () {
     return {
-
+      message: "Hi I am Student Component"
     }
-  },
-  methods:{
-      passData: function(){
-         console.log("This is simple message passed");
-
-         EventBus.$emit("emittedData","This is simple message passed");
-      }
   }
 }
 </script>
