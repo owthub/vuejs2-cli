@@ -1,52 +1,41 @@
 <template>
   <div>
-      <student></student>
+    <student-form>
 
-      <employee></employee>
+      {{ message }}
 
-     <h3>{{ simpleText }}</h3>
-
-      <button @click="updateMessage()">Click here to update</button>
+       <div slot="form-header">
+         <h3>Student Form</h3>
+       </div>
+       <div slot="form-elements">
+         <p><input type="text" placeholder="Enter name"/></p>
+         <p><input type="email" placeholder="Enter email"/></p>
+       </div>
+       <div slot="form-button">
+         <button v-on:click="submitDetails()">Submit</button>
+       </div>
+       <div slot="form-footer">
+          <p>This is form footer</p>
+       </div>
+    </student-form>
   </div>
 </template>
 
 <script>
 
 import Student from './components/Student.vue'
-import Employee from './components/Employee.vue'
 
 export default {
   components:{
-     "student":Student,
-     "employee":Employee
+     "student-form":Student
   },
   data () {
     return {
-      simpleText: "Simple message"
+        message:"Passing data from parent to child"
     }
   },
   methods:{
-    updateMessage: function(){
-        this.simpleText = "Message has been updated"
-      }
-  },
-  beforeCreate(){
-      alert("Before Create");
-  },
-  created(){
-     alert("Created");
-  },
-  beforeMount(){
-     alert("Before mount");
-  },
-  mounted(){
-    alert("Mounted")
-  },
-  beforeUpdate(){
-    alert("Before update");
-  },
-  updated(){
-      alert("updated")
+
   }
 }
 </script>
