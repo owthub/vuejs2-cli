@@ -1,18 +1,18 @@
 <template>
   <div>
-     <h3> Student Form </h3>
+     <h3> Employee Form </h3>
      <form>
          <p>
             <label>Name: </label>
-            <input type="text" name="txtStudentName"/>
+            <input type="text" name="txtEmployeeName"/>
          </p>
          <p>
-            <label>Class: </label>
-            <input type="text" name="txtStudentClass"/>
+            <label>Designation: </label>
+            <input type="text" name="txtEmployeeClass"/>
          </p>
          <p>
             <label>Mobile No: </label>
-            <input type="text" name="txtStudentMobile"/>
+            <input type="text" name="txtEmployeeMobile"/>
          </p>
          <p>
            <button>Submit</button>

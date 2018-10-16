@@ -1,37 +1,30 @@
 <template>
   <div>
-    <student-form>
+        <keep-alive>
+            <component v-bind:is="component"></component>
+        </keep-alive>
 
-      {{ message }}
 
-       <div slot="form-header">
-         <h3>Student Form</h3>
-       </div>
-       <div slot="form-elements">
-         <p><input type="text" placeholder="Enter name"/></p>
-         <p><input type="email" placeholder="Enter email"/></p>
-       </div>
-       <div slot="form-button">
-         <button v-on:click="submitDetails()">Submit</button>
-       </div>
-       <div slot="form-footer">
-          <p>This is form footer</p>
-       </div>
-    </student-form>
+        <button v-on:click="component = 'student-form'">Student Form</button>
+        <button v-on:click="component = 'employee-form'">Employee Form</button>
+
   </div>
 </template>
 
 <script>
 
 import Student from './components/Student.vue'
+import Employee from './components/Employee.vue'
 
 export default {
   components:{
-     "student-form":Student
+     "student-form":Student,
+     "employee-form":Employee
   },
   data () {
     return {
-        message:"Passing data from parent to child"
+        message:"",
+        component:"student-form"
     }
   },
   methods:{
