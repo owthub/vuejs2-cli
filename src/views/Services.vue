@@ -1,8 +1,9 @@
 <template>
   <div id="margin-shift">
-  
-       <router-view></router-view>
-
+     <h2>Our Services at Web Development</h2>
+     <p>Website Development</p>
+     <p>Web services Development</p>
+     <p>Training</p>
   </div>
 </template>
 
@@ -20,6 +21,6 @@ export default {
 
 <style scoped>
   #margin-shift{
-     margin-left:10%;
+     margin-left:20%;
   }
 </style>

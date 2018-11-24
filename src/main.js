@@ -1,55 +1,31 @@
 import Vue from 'vue'
 import App from './App.vue'
-import VueResource from 'vue-resource'
+import VueRouter from 'vue-router'
+//import VueResource from 'vue-resource'
+// importing components
+import Home from './views/Home.vue'
+import Contact from './views/Contact.vue'
+import About from './views/About.vue'
+import Services from './views/Services.vue'
 
-Vue.use(VueResource)
+Vue.use(VueRouter)
 
-Vue.mixin({
-  filters:{
-    makeUppercase: function(value){
-       return value.toUpperCase();
-    },
-    contentSnippet: function(value){
-        return value.slice(0,70)+"...";
-    }
-  }
+// routes
+const routes = [
+  { path:"/",component: Home },
+  { path:"/about",component: About },
+  { path:"/contact",component: Contact },
+  { path:"/services",component: Services }
+];
+
+const router = new VueRouter({
+  routes: routes
 });
 
-/*Vue.filter("makeUppercase",function(value){
-    return value.toUpperCase();
-});
-
-Vue.filter("contentSnippet",function(value){
-    return value.slice(2,70);
-});*/
-
-Vue.directive("list",{
-  bind(el,binding,vnode){
-    if(binding.value=="wide"){
-        el.style.maxWidth = "1200px";
-    }
-    if(binding.value=="narrow"){
-       el.style.maxWidth = "600px";
-    }
-    if(binding.arg=="cyan"){
-      //el.style.backgroundColor = "cyan";
-    }
-    if(binding.arg=="orange"){
-      //el.style.backgroundColor = "orange";
-    }
-  }
-});
-
-Vue.directive('format',{
-  bind(el,binding,vnode){
-     el.style.color = "blue";
-     //el.style.fontSize = "30px";
-     //font-size
-     // background-color: backgroundColor
-  }
-});
+//Vue.use(VueResource)
 
 new Vue({
   el: '#app',
-  render: h => h(App)
+  render: h => h(App),
+  router: router
 })

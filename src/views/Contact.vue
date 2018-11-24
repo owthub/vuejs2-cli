@@ -1,8 +1,7 @@
 <template>
   <div id="margin-shift">
-  
-       <router-view></router-view>
-
+     <h2>Contact details</h2>
+     <p>Email: onlinewebtutorhub@gmail.com</p>
   </div>
 </template>
 
@@ -20,6 +19,6 @@ export default {
 
 <style scoped>
   #margin-shift{
-     margin-left:10%;
+     margin-left:20%;
   }
 </style>
