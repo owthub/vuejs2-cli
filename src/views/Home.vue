@@ -12,6 +12,20 @@ export default {
     return {
 
     }
+  },
+  mounted(){
+     this.$axios.post("http://localhost/vue-cli/vueapis/api.php",{
+       name: "Online web tutor",
+       email: "onlinewebtutorhub@gmail.com",
+       phone: "123457980",
+       action: "insert"
+     })
+     .then(function(response){
+        console.log(response)
+     })
+     .catch(function(error){
+        console.log(error)
+     });
   }
 }
 </script>

@@ -10,9 +10,12 @@
 
    if($method=="POST"){
       // this is for insert data
+      $bodyParams = json_decode(file_get_contents("php://input"),true);
+
+      $action = $bodyParams['action'];
+      
       if($action=="insert"){
          // insertion
-         $bodyParams = json_decode(file_get_contents("php://input"),true);
          // $bodyParams->email => $bodyParams['email']
          $name = isset($bodyParams['name']) ? $bodyParams['name'] :"";
          $email = isset($bodyParams['email']) ? $bodyParams['email'] :"";
@@ -59,9 +62,67 @@
        $action = isset($_GET['action']) ? $_GET['action']: "";
 
        if($action == "list"){
+
+          $id = isset($_GET['id']) ? intval($_GET['id']):'';
+
            // this is listing of all data
+           if(!empty($id)){
+             // not empty means id has some value
+             $showQuery = "SELECT * from students WHERE id = ".$id;
+           }else{
+             // id is empty
+             $showQuery = "SELECT * from students";
+           }
+
+           $result = $connection->query($showQuery);
+
+           if($result->num_rows > 0){
+               // we have data
+               $row_data = array();
+               while($row = $result->fetch_assoc()){
+                   $row_data[] = $row;
+                   // array_push($row_data,$row);
+               }
+               echo json_encode(array(
+                 "status"=>1,
+                 "message"=>"Found data",
+                 "records"=> $row_data
+               ));
+           }else{
+             //we have no data
+             echo json_encode(array(
+               "status"=>0,
+               "message"=>"No Data found"
+             ));
+           }
+
+
        }else if($action == "delete"){
            // this is for delete operation
+           $id = isset($_GET['id']) ? intval($_GET['id']): '';
+
+           if(!empty($id)){
+
+              $deleteQuery = "DELETE from students WHERE id = ".$id;
+
+              if($connection->query($deleteQuery)===TRUE){
+
+                echo json_encode(array(
+                  "status"=>1,
+                  "message"=>"record deleted successfully"
+                ));
+              }else{
+                echo json_encode(array(
+                  "status"=>0,
+                  "message"=>"Failed to delete"
+                ));
+              }
+           }else{
+              echo json_encode(array(
+                "status"=>0,
+                "message"=>"ID is needed"
+              ));
+           }
        }
    }
 
