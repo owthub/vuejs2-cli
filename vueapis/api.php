@@ -13,7 +13,7 @@
       $bodyParams = json_decode(file_get_contents("php://input"),true);
 
       $action = $bodyParams['action'];
-      
+
       if($action=="insert"){
          // insertion
          // $bodyParams->email => $bodyParams['email']
@@ -36,7 +36,7 @@
          }
       }else if($action=="update"){
           // updation
-          $bodyParams = json_decode(file_get_contents("php://input"),true);
+          //$bodyParams = json_decode(file_get_contents("php://input"),true);
           // $bodyParams->email => $bodyParams['email
           $student_id = isset($bodyParams['student_id']) ? intval($bodyParams['student_id']) :"";
           $name = isset($bodyParams['name']) ? $bodyParams['name'] :"";
